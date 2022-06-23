@@ -4,7 +4,7 @@
     $nombre = $_POST['nombre'];
     //echo 'tu nombre es: ', $nombre;
     if ( $nombre == 'carlos' ){
-        echo 'bienvenmido';
+        echo 'bienvenido';
     }
     else{
         echo 'Usuario desconocido';
