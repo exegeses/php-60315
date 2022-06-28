@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: Raleway, sans-serif;
+}
+main{
+    width: 960px;
+    margin: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+    main article{
+        width: 280px;
+        padding: 12px;
+        box-shadow: 0px 0px 8px #d8d8d8;
+    }
+    main article img{
+        width: 100%;
+    }
+    main article h2{
+        font-size: 16px;
+    }

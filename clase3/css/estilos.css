@@ -1,0 +1,10 @@
+main{
+    width: 850px;
+    margin: auto;
+    display: flex;
+}
+    main article{
+        width: 200px;
+        text-align: center;
+        text-transform: capitalize;
+    }
