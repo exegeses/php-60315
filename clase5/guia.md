@@ -1,6 +1,6 @@
 # Guía para poder trabajar con un server de bases de datos 
 
-[ ]. Conexión a server y selección de base de datos
+[] Conexión a server y selección de base de datos
 
     mysqli_connect();  
 
