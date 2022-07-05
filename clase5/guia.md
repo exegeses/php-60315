@@ -1,4 +1,4 @@
-# Gu´ia para poder trabajar con un server de bases de datos 
+# Guía para poder trabajar con un server de bases de datos 
 
 []. Conexión a server y selección de base de datos
 
@@ -19,5 +19,4 @@
 > la función intermedia  
 
     mysqli_fetch_assoc();
-
 
