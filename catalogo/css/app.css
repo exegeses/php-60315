@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500&display=swap');
+
+body{
+    font-family: Nunito, sans-serif;
+    font-weight: 300;
+    font-size: 1.11em;
+    color: #444444;
+}
+/* header - nav */
+#m-logo{
+    width: 30px;
+}
+.a-menu{
+    transition: .3s;
+    border-bottom: 1px solid #222529;
+    opacity: .9;
+}
+.a-menu:hover{
+    border-bottom: 2px solid #95D073;
+    opacity: 1;
+}
+
+.btn-warning{
+    background-color: #7BC450;
+    border-color: #64a340;
+    font-weight: 500;
+    color: #fff;
+}
+.btn-warning:hover{
+    background-color: #95D073;
+    border-color: #64a340;
+    color: #fff;
+}
+
+/* main */
+main{
+    min-height: 600px;
+    margin-bottom: 100px;
+}
+
+    .producto{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px;
+        box-shadow: 0px 0px 10px #d9d9d9;
+        border-radius: 10px;
+    }
+    .producto img{
+        width: 100%;
+        border-radius: 10px;
+    }
+    .producto h2{
+        font-size: 20px;
+        width: 100%;
+        padding: 10px 0px 0px 2px;
+    }
+    .precio{
+        position: relative;
+        top: -100px;
+        left: 80px;
+        padding: 4px 20px;
+        background-color: #7BC450;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 20px;
+    }
+    .precio2{
+        padding: 4px 20px;
+        background-color: #7BC450;
+        color: #fff;
+        font-weight: 500;
+        border-radius: 20px;
+    }
+    .precio3{
+        color: #6cad47;
+        font-size: 1.12em;
+        font-weight: 500;
+    }
+
+footer{
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #d9d9d9;
+}
+    #m-iso-2{
+        width: 24px;
+        margin-right: 8px;
+    }
+    #copyleft{
+        font-size: 20px;
+        /* transform: rotate(180deg); */
+    }
