@@ -1,5 +1,9 @@
 <?php
 //require 'config/config.php';
+    require 'funciones/conexion.php';
+    require 'funciones/marcas.php';
+    $marcas = listarMarcas();
+
 	include 'layout/header.php';
 	include 'layout/nav.php';
 ?>
@@ -24,9 +28,13 @@
                 </tr>
             </thead>
             <tbody>
+<?php
+        while ( $marca = mysqli_fetch_assoc( $marcas ) )
+        {
+?>
                 <tr>
-                    <td>1</td>
-                    <td>nombre</td>
+                    <td><?= $marca['idMarca'] ?></td>
+                    <td><?= $marca['mkNombre'] ?></td>
                     <td>
                         <a href="" class="btn btn-outline-secondary">
                             Modificar
@@ -38,6 +46,9 @@
                         </a>
                     </td>
                 </tr>
+<?php
+        }
+?>
             </tbody>
         </table>
 
