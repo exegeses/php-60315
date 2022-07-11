@@ -15,6 +15,24 @@ function listarMarcas()
     }
 }
 
+function agregarMarca() : bool
+{
+    $mkNombre = $_POST['mkNombre'];
+    $link = conectar();
+    $sql = "INSERT INTO marcas
+                    ( mkNombre )
+                VALUE
+                    ( '".$mkNombre."' )";
+    try {
+        $resultado = mysqli_query( $link, $sql );
+        return  $resultado;
+    }catch (Exception $e)
+    {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
 /*
  * listarMarcas()
  * verMarcaPorID()
