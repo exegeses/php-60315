@@ -78,6 +78,11 @@ main{
         font-weight: 500;
     }
 
+    textarea{
+        height: 120px !important;
+        resize: none;
+    }
+
 footer{
     position: fixed;
     bottom: 0px;

@@ -41,7 +41,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="" class="btn btn-outline-secondary">
+                        <a href="formEliminarMarca.php?idMarca=<?= $marca['idMarca'] ?>" class="btn btn-outline-secondary">
                             Eliminar
                         </a>
                     </td>
