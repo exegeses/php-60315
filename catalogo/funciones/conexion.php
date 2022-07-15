@@ -7,12 +7,21 @@ const BASE = 'catalogo60315';
 
 function conectar()
 {
-    $link = mysqli_connect(
-        SERVER,
-        USUARIO,
-        CLAVE,
-        BASE
-    );
-    return $link;
+    try {
+        $link = mysqli_connect(
+            SERVER,
+            USUARIO,
+            CLAVE,
+            BASE
+        );
+        return $link;
+    }
+    catch ( Exception $e )
+    {
+        //función de logueo de errores
+        //redirección a internal.php
+        header('location: internal.php');
+    }
+
 }
 
