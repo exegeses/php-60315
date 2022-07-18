@@ -11,9 +11,21 @@
     <main class="container">
         <h1>Panel de administración de productos</h1>
 
-        <a href="admin.php" class="btn btn-outline-secondary my-2">
-            Volver a dashboard
-        </a>
+        <form action="adminProductos.php" method="get">
+        <table class="table table-borderless">
+            <tr>
+            <td>
+                <a href="admin.php" class="btn btn-outline-secondary my-2">
+                    Volver a dashboard
+                </a>
+            </td>
+            <td>
+                <input type="text" name="buscar" class="form-control">
+            </td>
+            <td><button class="btn btn-dark">buscar</button></td>
+            </tr>
+        </table>
+        </form>
 
         <table class="table table-borderless table-striped table-hover">
             <thead>

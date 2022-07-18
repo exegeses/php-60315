@@ -14,6 +14,10 @@ function listarProductos() : mysqli_result | false
             FROM productos, marcas, categorias
             WHERE productos.idMarca = marcas.idMarca
               AND productos.idCategoria = categorias.idCategoria;";*/
+
+    //$buscar = ( isset($_GET['buscar']) )? $_GET['buscar'] :  '';
+    $buscar = $_GET['buscar'] ?? '';
+
     $sql = "SELECT
                     idProducto, prdNombre, prdPrecio,
                     m.idMarca, mkNombre,
@@ -23,7 +27,8 @@ function listarProductos() : mysqli_result | false
                     JOIN marcas m
                         ON p.idMarca = m.idMarca
                   JOIN categorias c
-                        ON  p.idCategoria = c.idCategoria";
+                        ON  p.idCategoria = c.idCategoria
+                WHERE prdNombre LIKE '%".$buscar."%'";
     try
     {
         $resultado = mysqli_query($link, $sql);
