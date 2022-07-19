@@ -4,7 +4,7 @@
 function listarCategorias()
 {
     $link = conectar();
-    $sql = "SELECT idcategoria, catNombre
+    $sql = "SELECT idCategoria, catNombre
                 FROM categorias";
     try {
         $resultado = mysqli_query( $link, $sql );
