@@ -40,6 +40,32 @@ function listarProductos() : mysqli_result | false
     }
 }
 
+function verProductoPorID() : array | false
+{
+    $idProducto = $_GET['idProducto'];
+    $link = conectar();
+    $sql = "SELECT
+                    idProducto, prdNombre, prdPrecio,
+                    m.idMarca, mkNombre,
+                    c.idCategoria, catNombre,
+                    prdDescripcion, prdImagen
+                FROM productos p
+                    JOIN marcas m
+                        ON p.idMarca = m.idMarca
+                    JOIN categorias c
+                        ON  p.idCategoria = c.idCategoria
+                WHERE idProducto = ".$idProducto;
+    try {
+        $resultado = mysqli_query( $link, $sql );
+        $producto = mysqli_fetch_assoc( $resultado );
+        return $producto;
+    }catch ( Exception $e )
+    {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
 function subirImagen()
 {
     //si no enviaron archivo
