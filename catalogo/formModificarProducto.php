@@ -16,7 +16,7 @@
         <h1>Modificación de un producto</h1>
 
         <div class="alert bg-light p-4 col-8 mx-auto border shadow-sm">
-            <form action="formModificarProducto.php" method="post" enctype="multipart/form-data">
+            <form action="modificarProducto.php" method="post" enctype="multipart/form-data">
 
                 <div class="form-group mb-4">
                     <label for="prdNombre">Nombre del Producto</label>
@@ -79,6 +79,10 @@
                     <input type="file" name="prdImagen"  class="custom-file-input" id="customFileLang" lang="es">
                     <label class="custom-file-label" for="customFileLang" data-browse="Buscar en disco">Seleccionar Archivo: </label>
                 </div>
+                <input type="hidden" name="imgActual"
+                       value="<?= $producto['prdImagen'] ?>">
+                <input type="hidden" name="idProducto"
+                       value="<?= $producto['idProducto'] ?>">
 
                 <button class="btn btn-dark mr-3 px-4">Modificar producto</button>
                 <a href="adminProductos.php" class="btn btn-outline-secondary">

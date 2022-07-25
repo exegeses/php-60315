@@ -68,8 +68,13 @@ function verProductoPorID() : array | false
 
 function subirImagen()
 {
-    //si no enviaron archivo
+    //si no enviaron archivo en alta
     $prdImagen = 'noDisponible.png';
+
+    //si no enviaron archivo en modificación
+    if( isset($_POST['imgActual']) ){
+        $prdImagen = $_POST['imgActual'];
+    }
 
     //si enviaron archivo
     if( $_FILES['prdImagen']['error'] == 0 ){
@@ -112,6 +117,37 @@ function agregarProducto()
                     )";
     try {
         $resultado = mysqli_query($link, $sql);
+        return $resultado;
+    }catch ( Exception $e )
+    {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+function modificarProducto() : bool
+{
+    //capturamos datos enviados por el form
+    $prdNombre = $_POST['prdNombre'];
+    $prdPrecio = $_POST['prdPrecio'];
+    $idMarca = $_POST['idMarca'];
+    $idCategoria = $_POST['idCategoria'];
+    $prdDescripcion = $_POST['prdDescripcion'];
+    $prdImagen = subirImagen();
+    $idProducto = $_POST['idProducto'];
+
+    $link = conectar();
+    $sql = "UPDATE productos
+                SET 
+                     prdNombre = '".$prdNombre."',
+                     prdPrecio = ".$prdPrecio.",
+                     idMarca = ".$idMarca.",
+                     idCategoria = ".$idCategoria.",
+                     prdDescripcion = '".$prdDescripcion."',
+                     prdImagen = '".$prdImagen."'
+                WHERE idProducto = ".$idProducto;
+    try {
+        $resultado = mysqli_query( $link, $sql );
         return $resultado;
     }catch ( Exception $e )
     {
