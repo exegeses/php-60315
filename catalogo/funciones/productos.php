@@ -156,6 +156,21 @@ function modificarProducto() : bool
     }
 }
 
+function eliminarProducto( int $idProducto ) : bool
+{
+    $link = conectar();
+    $sql = "DELETE FROM productos
+                WHERE idProducto = ".$idProducto;
+    try {
+        $resultado = mysqli_query($link, $sql);
+        return  $resultado;
+    }catch ( Exception $e )
+    {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
 /*
  * listarProductos()
  * verProductoPorID()
