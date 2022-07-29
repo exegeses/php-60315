@@ -17,8 +17,8 @@
 
             <div class="text-end">
 
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Registro</button>
+                <a href="formLogin.php" class="btn btn-outline-light me-2">Login</a>
+                <a href="formRegister.php" class="btn btn-warning">Registro</a>
 
                 <!-- si está logueado -->
                 <!-- si está logueado -->

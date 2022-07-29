@@ -5,7 +5,7 @@
 ?>
 
     <main class="container">
-        <h1>Alta de un usuario</h1>
+        <h1>Registro de un usuario</h1>
 
 
         <div class="alert bg-light p-4 col-8 mx-auto shadow">
