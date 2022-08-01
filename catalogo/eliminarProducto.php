@@ -2,7 +2,7 @@
     //require 'config/config.php';
     require 'funciones/conexion.php';
     require 'funciones/productos.php';
-    $checkDelete = eliminarProducto( $_GET['idProducto'] );
+    $checkDelete = eliminarProducto( $_POST['idProducto'] );
     $css = 'danger';
     $mensaje = 'No se pudo eliminar el producto.';
     if( $checkDelete ){
