@@ -1,5 +1,7 @@
 <?php
-    //require 'config/config.php';
+    require 'config/config.php';
+    require 'funciones/autenticacion.php';
+        autenticar();
     include 'layout/header.php';
     include 'layout/nav.php';
 ?>

@@ -14,7 +14,6 @@
         }
         catch ( Exception $e ){
             echo $e->getMessage();
-            return false;
         }
 
         //si cantidad es == 0   -> usuario mal
@@ -30,9 +29,10 @@
             if (  password_verify( $clave, $usuario['clave'] )  ){
                 //acá ya sabemos que se logueó bien
                 ######### RUTINA DE AUTENTICACIÓN
-                    //sesiones
+                $_SESSION['login'] = 1;
                 //redirección a admin
                 header( 'location: admin.php' );
+                return;
             }
             header('location: formLogin.php?error=1');
         }
@@ -46,5 +46,7 @@
 
     function autenticar()
     {
-
+        if( !isset( $_SESSION['login'] ) ){
+            header('location: formLogin.php?error=1');
+        }
     }
