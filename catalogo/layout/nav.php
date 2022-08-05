@@ -29,7 +29,8 @@
 ?>
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                        Nombre Apellido
+                        <?= $_SESSION['nombre']; ?>
+                        <?= $_SESSION['apellido']; ?>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
                         <li>

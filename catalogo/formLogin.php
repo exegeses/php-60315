@@ -32,9 +32,16 @@
 
     <?php
         if( isset( $_GET['error'] ) ){
+            //$mensaje = ( $_GET['error'] == 1 )?'Usuario y/o clave incorrectos.':'Debe loguearse para ingresar';
+            $mensaje = match ( $_GET['error'] )
+            {
+                '1' => 'Usuario y/o clave incorrectos.',
+                '2' => 'Debe loguearse para ingresar',
+                default => 'No se cumplen los anteriores'
+            }
     ?>
         <div class="alert alert-danger p-4 col-8 mx-auto text-danger shadow">
-            Usuario y/o clave incorrectos.
+            <?= $mensaje; ?>
         </div>
     <?php
         }

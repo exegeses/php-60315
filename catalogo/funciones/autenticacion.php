@@ -30,6 +30,9 @@
                 //acá ya sabemos que se logueó bien
                 ######### RUTINA DE AUTENTICACIÓN
                 $_SESSION['login'] = 1;
+                #registramos datos de usuario
+                $_SESSION['nombre'] = $usuario['nombre'];
+                $_SESSION['apellido'] = $usuario['apellido'];
                 //redirección a admin
                 header( 'location: admin.php' );
                 return;
@@ -48,6 +51,6 @@
     function autenticar()
     {
         if( !isset( $_SESSION['login'] ) ){
-            header('location: formLogin.php?error=1');
+            header('location: formLogin.php?error=2');
         }
     }
