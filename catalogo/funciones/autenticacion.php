@@ -41,7 +41,8 @@
 
     function logout()
     {
-
+        session_destroy();
+        header('refresh:3;url=index.php');
     }
 
     function autenticar()

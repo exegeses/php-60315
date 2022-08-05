@@ -16,13 +16,17 @@
 
 
             <div class="text-end">
-
+<?php
+        ######### si NO está logueado
+            if ( !isset( $_SESSION['login'] ) ){
+?>
                 <a href="formLogin.php" class="btn btn-outline-light me-2">Login</a>
                 <a href="formRegister.php" class="btn btn-warning">Registro</a>
-
-                <!-- si está logueado -->
-                <!-- si está logueado -->
-                <!--
+<?php
+            }
+            else{
+                ######### si ESTÁ logueado
+?>
                 <div class="dropdown">
                     <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
                         Nombre Apellido
@@ -31,7 +35,7 @@
                         <li>
                             <a class="dropdown-item" href="logout.php">
                                 <i class="bi bi-box-arrow-right"></i>
-                                Salir de admin
+                                Salir
                             </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
@@ -49,8 +53,9 @@
                         </li>
                     </ul>
                 </div>
-                -->
-                <!-- si está logueado -->
+<?php
+            }
+?>
 
             </div>
         </div>
