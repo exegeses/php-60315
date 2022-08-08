@@ -5,7 +5,7 @@
         $email = $_POST['email'];
         $clave = $_POST['clave'];
         $link = conectar();
-        $sql = "SELECT id, nombre, apellido, clave  
+        $sql = "SELECT id, nombre, apellido, clave, idRol  
                     FROM usuarios
                     WHERE email = '".$email."'";
         try{
@@ -31,8 +31,11 @@
                 ######### RUTINA DE AUTENTICACIÓN
                 $_SESSION['login'] = 1;
                 #registramos datos de usuario
+                $_SESSION['id'] = $usuario['id'];
                 $_SESSION['nombre'] = $usuario['nombre'];
                 $_SESSION['apellido'] = $usuario['apellido'];
+                $_SESSION['idRol'] = $usuario['idRol'];
+
                 //redirección a admin
                 header( 'location: admin.php' );
                 return;
@@ -52,5 +55,13 @@
     {
         if( !isset( $_SESSION['login'] ) ){
             header('location: formLogin.php?error=2');
+        }
+    }
+
+    function noAdmin()
+    {
+        if ( !isset($_SESSION['idRol']) || $_SESSION['idRol'] != 1 )
+        {
+            header('location: noAdmin.php');
         }
     }
