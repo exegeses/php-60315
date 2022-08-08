@@ -2,6 +2,21 @@
 
 ##### CRUD de usurios
 
+function listarUsuarios()
+{
+    $link = conectar();
+    try {
+        $sql = "SELECT id,nombre,apellido,email, rol
+                    FROM usuarios u
+                    JOIN roles r ON u.idRol = r.idRol";
+        $resultado = mysqli_query($link, $sql);
+        return $resultado;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
 function registrar() : bool
 {
     $nombre = $_POST['nombre'];

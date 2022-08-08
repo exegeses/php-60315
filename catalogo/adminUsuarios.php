@@ -1,6 +1,11 @@
 <?php
 
     require 'config/config.php';
+    require 'funciones/autenticacion.php';
+        autenticar();
+    require 'funciones/conexion.php';
+    require 'funciones/usuarios.php';
+    $usuarios = listarUsuarios();
 	include 'layout/header.php';
 	include 'layout/nav.php';
 ?>
@@ -27,24 +32,28 @@
                 </tr>
             </thead>
             <tbody>
-
+        <?php
+                while( $usuario = mysqli_fetch_assoc( $usuarios ) ){  
+        ?>
                 <tr>
-                    <td><?= 'idUsuario' ?></td>
-                    <td><?= 'nombre' ?></td>
-                    <td><?= 'apellido' ?></td>
-                    <td><?= 'email' ?></td>
+                    <td><?= $usuario['id']; ?></td>
+                    <td><?= $usuario['nombre']; ?></td>
+                    <td><?= $usuario['apellido']; ?></td>
+                    <td><?= $usuario['email']; ?></td>
                     <td>
-                        <a href="formModificarUsuario.php?idUsuario=<?= 'idUsuario' ?>" class="btn btn-outline-secondary">
+                        <a href="formModificarUsuario.php?idd=<?= $usuario['id'] ?>" class="btn btn-outline-secondary">
                             Modificar
                         </a>
                     </td>
                     <td>
-                        <a href="formEliminarUsuario.php?idUsuario=<?= 'idUsuario' ?>" class="btn btn-outline-secondary">
+                        <a href="formEliminarUsuario.php?id=<?= $usuario['id'] ?>" class="btn btn-outline-secondary">
                             Eliminar
                         </a>
                     </td>
                 </tr>
-
+        <?php
+                }
+        ?>
             </tbody>
         </table>
 
