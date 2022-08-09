@@ -47,3 +47,31 @@ function registrar() : bool
         return false;
     }
 }
+
+function modificarUsuario()
+{
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $email = $_POST['email'];
+
+    $id = $_SESSION['id'];
+
+    $link = conectar();
+    $sql = "UPDATE usuarios 
+                SET   nombre = '".$nombre."',
+                    apellido = '".$apellido."',
+                       email = '".$email."'
+               WHERE id = ".$id;
+    try{
+        $resultado = mysqli_query( $link, $sql );
+
+        $_SESSION['nombre'] = $nombre;
+        $_SESSION['apellido'] = $apellido;
+        $_SESSION['email'] = $email;
+        return $resultado;
+    }
+    catch ( Exception $e ){
+        echo $e->getMessage();
+        return false;
+    }
+}

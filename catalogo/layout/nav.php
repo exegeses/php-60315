@@ -41,7 +41,7 @@
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="formModificarUsuario.php">
                                 <i class="bi bi-file-person"></i>
                                 Modificar perfil
                             </a>

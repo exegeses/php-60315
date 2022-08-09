@@ -5,7 +5,7 @@
         $email = $_POST['email'];
         $clave = $_POST['clave'];
         $link = conectar();
-        $sql = "SELECT id, nombre, apellido, clave, idRol  
+        $sql = "SELECT id, nombre, apellido, email, clave, idRol  
                     FROM usuarios
                     WHERE email = '".$email."'";
         try{
@@ -34,6 +34,7 @@
                 $_SESSION['id'] = $usuario['id'];
                 $_SESSION['nombre'] = $usuario['nombre'];
                 $_SESSION['apellido'] = $usuario['apellido'];
+                $_SESSION['email'] = $usuario['email'];
                 $_SESSION['idRol'] = $usuario['idRol'];
 
                 //redirección a admin
