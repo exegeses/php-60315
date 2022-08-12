@@ -45,15 +45,15 @@
         </div>
 
         <script>
-            let form = document.querySelector('.validarForm');
-            let clave = document.querySelector('#clave');
-            let newClave = document.querySelector('#newClave');
-            let newClave2 = document.querySelector('#newClave2');
-            let msjClave = document.querySelector('#msjClave');
+            const form = document.querySelector('.validarForm');
+            const clave = document.querySelector('#clave');
+            const newClave = document.querySelector('#newClave');
+            const newClave2 = document.querySelector('#newClave2');
+            const msjClave = document.querySelector('#msjClave');
                 msjClave.style.display = 'none';
-            let msjNewClave = document.querySelector('#msjNewClave');
+            const msjNewClave = document.querySelector('#msjNewClave');
                 msjNewClave.style.display = 'none';
-            let msjNewClave2 = document.querySelector('#msjNewClave2');
+            const msjNewClave2 = document.querySelector('#msjNewClave2');
                 msjNewClave2.style.display = 'none';
 
             form.addEventListener('submit', validarFormulario );
@@ -93,7 +93,7 @@
             }
             function checkRepite()
             {
-                if( newClave.value != newClave.value ){
+                if( newClave.value != newClave2.value ){
                     //console.log('no coinciden');
                     return true;
                 }
