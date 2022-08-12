@@ -74,7 +74,7 @@ function modificarUsuario()
     $email = $_POST['email'];
 
     $sqlRol = "";
-    if( $_POST['idRol'] ){
+    if( isset($_POST['idRol']) ){
         $idRol = $_POST['idRol'];
         $sqlRol = ", idRol = ".$idRol;
     }
