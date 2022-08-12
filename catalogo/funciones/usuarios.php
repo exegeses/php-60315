@@ -17,6 +17,25 @@ function listarUsuarios()
     }
 }
 
+function verUsuarioPorID()
+{
+    $idUsuario = $_GET['id'];
+    $link = conectar();
+    try {
+        $sql = "SELECT id, nombre, apellido, email, 
+                        rol, u.idRol
+                    FROM usuarios u
+                    JOIN roles r ON u.idRol = r.idRol
+                    WHERE id = ".$idUsuario;
+        $resultado = mysqli_query($link, $sql);
+        $usuario = mysqli_fetch_assoc($resultado);
+        return $usuario;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        return false;
+    }
+}
+
 function registrar() : bool
 {
     $nombre = $_POST['nombre'];
@@ -54,20 +73,27 @@ function modificarUsuario()
     $apellido = $_POST['apellido'];
     $email = $_POST['email'];
 
-    $id = $_SESSION['id'];
-
+    $sqlRol = "";
+    if( $_POST['idRol'] ){
+        $idRol = $_POST['idRol'];
+        $sqlRol = ", idRol = ".$idRol;
+    }
+    $id = $_POST['id'];
     $link = conectar();
     $sql = "UPDATE usuarios 
                 SET   nombre = '".$nombre."',
                     apellido = '".$apellido."',
-                       email = '".$email."'
-               WHERE id = ".$id;
+                       email = '".$email."'";
+    $sql .= $sqlRol;
+    $sql .= " WHERE id = ".$id;
     try{
         $resultado = mysqli_query( $link, $sql );
 
-        $_SESSION['nombre'] = $nombre;
-        $_SESSION['apellido'] = $apellido;
-        $_SESSION['email'] = $email;
+        if( $_SESSION['idRol'] != 1 ){
+            $_SESSION['nombre'] = $nombre;
+            $_SESSION['apellido'] = $apellido;
+            $_SESSION['email'] = $email;
+        }
         return $resultado;
     }
     catch ( Exception $e ){

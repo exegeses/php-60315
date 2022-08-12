@@ -42,7 +42,7 @@
                     <td><?= $usuario['apellido']; ?></td>
                     <td><?= $usuario['email']; ?></td>
                     <td>
-                        <a href="formModificarUsuario.php?idd=<?= $usuario['id'] ?>" class="btn btn-outline-secondary">
+                        <a href="formModificarUsuario.php?id=<?= $usuario['id'] ?>" class="btn btn-outline-secondary">
                             Modificar
                         </a>
                     </td>
