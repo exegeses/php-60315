@@ -101,3 +101,54 @@ function modificarUsuario()
         return false;
     }
 }
+
+function modificarClave()
+{
+    //capturamos la clave actual sin encriptar
+    $clave = $_POST['clave'];
+    /** obtenemos la contraseña actual encriptada **/
+    $link = conectar();
+    $sql = "SELECT clave FROM usuarios
+                WHERE id = ".$_SESSION['id'];
+    try {
+        $resultado = mysqli_query($link, $sql);
+    }catch ( Exception $e )
+    {
+        echo $e->getMessage();
+        return false;
+    }
+    //clave encriptada
+    $usuario = mysqli_fetch_assoc($resultado);
+    $claveHash = $usuario['clave'];
+    //comparamos claves
+    if ( password_verify( $clave, $claveHash ) ){
+        //si coinciden, entonces
+            //capturamos nueva clave + nueva clave repetida
+            // y ver qhe coincidan.
+        $newClave = $_POST['newClave'];
+        $newClave2 = $_POST['newClave2'];
+        if( $newClave == $newClave2 ){
+            //si coinciden, encriptamos y modificamos clave
+            $newClaveHash = password_hash( $newClave, PASSWORD_DEFAULT );
+            $sql = "UPDATE usuarios
+                        SET clave = '".$newClaveHash."'
+                        WHERE id = ".$_SESSION['id'];
+            try {
+                //modificación de clave en tabla usuarios
+                $resultado = mysqli_query($link, $sql);
+                return $resultado;
+            }
+            catch ( Exception $e ){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+        // si no counciden las claves nueva y repite
+        header('location: formModificarClave.php?error=2');
+        return false;
+    }
+    // si no coinciden clave actual con encriptada
+    header('location: formModificarClave.php?error=1');
+    return false;
+    
+}

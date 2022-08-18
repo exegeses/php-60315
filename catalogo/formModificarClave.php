@@ -44,6 +44,23 @@
 
         </div>
 
+        <?php
+        if( isset( $_GET['error'] ) ){
+            $mensaje = match ( $_GET['error'] )
+            {
+                '1' => 'Contraseña incorrecta.',
+                '2' => 'Las credenciales no coinciden (nueva clave)',
+                default => 'No se cumplen los anteriores'
+            }
+            ?>
+            <div class="alert alert-danger p-4 col-8 mx-auto text-danger shadow">
+                <?= $mensaje; ?>
+            </div>
+            <?php
+        }
+        ?>
+
+
         <script>
             const form = document.querySelector('.validarForm');
             const clave = document.querySelector('#clave');
