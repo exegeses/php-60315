@@ -5,6 +5,12 @@ const USUARIO = 'root';
 const CLAVE = 'root';
 const BASE = 'catalogo60315';
 
+/* remotos
+const SERVER = 'localhost';
+const USUARIO = 'id19439035_marcos';
+const CLAVE = '0&6BZ-yHa&hCDkYN';
+const BASE = 'id19439035_catalogo'; */
+
 function conectar()
 {
     try {

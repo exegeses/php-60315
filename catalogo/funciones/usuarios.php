@@ -150,5 +150,5 @@ function modificarClave()
     // si no coinciden clave actual con encriptada
     header('location: formModificarClave.php?error=1');
     return false;
-    
+
 }
