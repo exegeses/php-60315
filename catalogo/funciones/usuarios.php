@@ -152,3 +152,62 @@ function modificarClave()
     return false;
 
 }
+
+/* genear un código aleatorio
+    de n caractéres
+    que contenga minúsculas, mayúsculas y números
+ */
+
+function codigoAleatorio( $largo = 24 )
+{
+    $seed = [
+        'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E',
+        'f', 'F','g', 'G', 'h', 'H', 'i', 'I', 'j', 'J',
+        'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O',
+        'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 't',
+        'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y',
+        'Y', 'z', 'Z', 1, 2, 3, 4, 5, 6, 7, 8, 9
+    ];
+    $largoSeed = count($seed) - 1;
+    $codigo = '';
+
+    for ( $i = 0; $i < $largo; $i++ )
+    {
+        $codigo .= $seed[ rand( 0, $largoSeed ) ];
+    }
+    return $codigo;
+}
+
+
+
+/**
+* función para envio de email y posterior cambio de contraseña
+ */
+function mailResetPass()
+{
+    $email = $_POST['email'];
+    $sql =  "SELECT email 
+                FROM usuarios 
+                WHERE email = '".$email."'";
+    $link = conectar();
+    try{
+        $resultado = mysqli_query($link, $sql);
+        $cantidad = mysqli_num_rows($resultado);
+        /* 0 email mail --  1 email correcto */
+        if ( $cantidad == 0 ){
+            //redirección el formulario
+            header('location: formResetPass.php?error=1');
+            return false;
+        }
+
+        //generación de código aleatorio
+        //guardar ese código en table password_resets
+        //armar y enviar email con ese código
+        $codigo = codigoAleatorio();
+
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+        return false;
+    }
+}

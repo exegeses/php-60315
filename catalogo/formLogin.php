@@ -22,7 +22,8 @@
                 <button class="btn btn-dark my-2 px-4">
                     Ingresar
                 </button>
-                <a class="btn btn-outline-secondary my-2 px-4 " href="">
+                <a class="btn btn-outline-secondary my-2 px-4 "
+                   href="formResetPass.php">
                     Resetear clave.
                 </a>
 
