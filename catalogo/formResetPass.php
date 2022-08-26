@@ -10,7 +10,7 @@
         <div class="alert bg-light p-4 m-3 col-8 mx-auto shadow">
             <form action="mailResetPass.php" method="post">
 
-                <label for="email">Email: </label>
+                <label for="email">Ingrese su email: </label>
                 <div class="input-group mb-4">
                     <div class="input-group-prepend">
                         <div class="input-group-text">@</div>

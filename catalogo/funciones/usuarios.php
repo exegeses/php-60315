@@ -178,7 +178,23 @@ function codigoAleatorio( $largo = 24 )
     return $codigo;
 }
 
-
+function enviarMailResetPass( string $destinatario, string $codigo ): bool
+{
+    //$destinatario = 'test@robot-mail.com';
+    $asunto = 'Solicitud de reseteo de contraseña.';
+    $url = 'http://php-60315.curso:8080/catalogo/';
+    $file = 'formResetPass2.php';
+    $qstring = '?codigo='.$codigo;
+    $cuerpo = '<div>';
+    $cuerpo .= '<a href="'.$url.$file.$qstring.'&email='.$destinatario.'">Resetear contraseña</>';
+    $cuerpo .= '</div>';
+    $headers = 'From: admin@empresa.com' . "\r\n";
+    $headers .= 'Reply-To: no-reply@empresa.com' . "\r\n";
+    $headers .= 'MIME-Version: 1.0';
+    $headers .= 'Content-type: text/html; utf-8';
+    mail( $destinatario, $asunto, $cuerpo, $headers );
+    return true;
+}
 
 /**
 * función para envio de email y posterior cambio de contraseña
@@ -193,7 +209,7 @@ function mailResetPass()
     try{
         $resultado = mysqli_query($link, $sql);
         $cantidad = mysqli_num_rows($resultado);
-        /* 0 email mail --  1 email correcto */
+        /* 0 email mal  ||  1 email correcto */
         if ( $cantidad == 0 ){
             //redirección el formulario
             header('location: formResetPass.php?error=1');
@@ -201,10 +217,66 @@ function mailResetPass()
         }
 
         //generación de código aleatorio
-        //guardar ese código en table password_resets
-        //armar y enviar email con ese código
         $codigo = codigoAleatorio();
 
+        //$fecha = date('Y-m-d');
+        //guardar ese código en table password_resets
+        $sql = "INSERT INTO password_resets
+                    VALUE 
+                        ( DEFAULT, 
+                          '".$email."',
+                          '".$codigo."',
+                          CURRENT_DATE(),
+                          1
+                        )";
+        try {
+            $resultado = mysqli_query( $link, $sql );
+            //armar y enviar email con ese código
+            enviarMailResetPass( $email, $codigo );
+            return true;
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+            return false;
+        }
+
+
+
+    }
+    catch(Exception $e){
+        echo $e->getMessage();
+        return false;
+    }
+}
+
+function validarCodigoResetPass() : bool
+{
+    //si NO viene el código,
+    if( !isset($_GET['codigo']) ){
+        return false;
+    }
+    //capturamos el código
+    $codigo = $_GET['codigo'];
+    //busco el código en la tabla password_resets
+    $sql = "SELECT codigo, email 
+                FROM password_resets 
+                WHERE active = 1
+                  AND codigo = '".$codigo."'";
+    try{
+        $link = conectar();
+        $resultado = mysqli_query($link, $sql);
+        //si coinciden   1  ok  ||  0 error
+        $cantidad = mysqli_num_rows($resultado);
+        if( $cantidad == 0 ){
+            return false;
+        }
+        $datos = mysqli_fetch_assoc($resultado);
+        $_SESSION['emailReset'] = $datos['email'];
+        $sql = "UPDATE password_resets
+                    SET active = 0
+                    WHERE codigo = '".$codigo."'";
+        $resultado = mysqli_query($link, $sql);
+        return $resultado;
     }
     catch(Exception $e){
         echo $e->getMessage();
