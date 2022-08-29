@@ -283,3 +283,25 @@ function validarCodigoResetPass() : bool
         return false;
     }
 }
+
+function resetPass() : bool
+{
+    $clave = $_POST['clave'];
+    $clave2 = $_POST['clave2'];
+    $emailReset = $_SESSION['emailReset'];
+
+    if( $clave == $clave2 ){
+        $link = conectar();
+        $pwHash = password_hash( $clave2, PASSWORD_DEFAULT );
+        $sql = "UPDATE usuarios
+                    SET clave = '".$pwHash."'
+                    WHERE email = '".$emailReset."'";
+        try {
+            $resultado = mysqli_query( $link, $sql );
+            return $resultado;
+        }catch ( Exception $e ){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+}

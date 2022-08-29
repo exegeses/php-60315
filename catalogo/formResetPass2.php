@@ -14,7 +14,7 @@
     if ( !$checkCodigo ){
 ?>
         <div class="alert alert-danger p-4 col-8 mx-auto shadow">
-            El código, intente nuevamente
+            El enlace ha caducado, intente nuevamente
             <a class="btn btn-outline-secondary my-2 px-4 "
                href="formResetPass.php">
                 Resetear clave.
